@@ -34,14 +34,14 @@ module.exports = function (env) {
                 'popper.js': ['Popper', 'window.Popper']
             }),
             new HtmlWebpackPlugin({
-                template: 'index.html'
+                template: 'client/index.html'
               })
         ],
         devtool: 'inline-source-map',
         devServer: {
             contentBase: 'wwwroot/dist',
             historyApiFallback: {
-                index: 'index.html'
+                index: 'client/index.html'
             }
         },
         module: {
