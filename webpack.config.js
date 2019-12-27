@@ -5,6 +5,7 @@ const {
 } = require('clean-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (env) {
 
@@ -19,7 +20,7 @@ module.exports = function (env) {
         },
         output: {
             path: path.join(__dirname, 'wwwroot/dist'),
-            filename: '[name].js',
+            filename: '[name].[hash].js',
             publicPath: '/'
         },
         resolve: {
@@ -33,6 +34,9 @@ module.exports = function (env) {
                 "window.jQuery": "jquery",
                 'popper.js': ['Popper', 'window.Popper']
             }),
+            new CopyWebpackPlugin([
+                {from:'client/content',to:''} 
+            ]),
             new HtmlWebpackPlugin({
                 template: 'client/index.html'
               })
@@ -44,6 +48,9 @@ module.exports = function (env) {
                 index: 'client/index.html'
             }
         },
+        externals: {
+            jquery: 'jQuery'
+          },
         module: {
             rules: [{
                     test: /\.css?$/,
@@ -56,7 +63,12 @@ module.exports = function (env) {
                 {
                     test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/,
                     use: 'url-loader?limit=100000'
-                }
+                },
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                  },
             ]
         }
     }
