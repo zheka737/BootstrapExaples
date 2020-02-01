@@ -1,9 +1,9 @@
 {
     "scripts": {
-        "start": "webpack --config webpack.config.js --watch --progress --profile",
+        "start-watch": "webpack --config webpack.config.js --watch --progress --profile",
         "build": "webpack --config webpack.config.js --progress --profile",
         "prod": "webpack --env.NODE_ENV=production --config webpack.config.js --progress",
-        "start-dev-server": "webpack-dev-server --open"
+        "start": "webpack-dev-server --open"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.11.2",

@@ -48,9 +48,7 @@ module.exports = function (env) {
                 index: 'client/index.html'
             }
         },
-        externals: {
-            jquery: 'jQuery'
-          },
+
         module: {
             rules: [{
                     test: /\.css?$/,
